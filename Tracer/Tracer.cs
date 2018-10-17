@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Tracer
 {
-    public class Tracer : ITracer
+    public sealed class Tracer : ITracer
     {
-        TraceResult traceResult;
+        private readonly TraceResult traceResult;
+
+        private static volatile Tracer instance = null;
+        private static readonly object synsRoot = new object();
 
         public void StartTrace()
         {
@@ -23,6 +26,21 @@ namespace Tracer
         public TraceResult GetTraceResult()
         {
             return traceResult;
+        }
+
+        public static Tracer GetInstance()
+        {
+            if(instance == null)
+            {
+                lock (synsRoot)
+                {
+                    if(instance == null)
+                    {
+                        instance = new Tracer();
+                    }
+                }
+            }
+            return instance;
         }
     }
 }
