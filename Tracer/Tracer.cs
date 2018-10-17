@@ -13,6 +13,11 @@ namespace Tracer
         private static volatile Tracer instance = null;
         private static readonly object synsRoot = new object();
 
+        private Tracer()
+        {
+            traceResult = new TraceResult();
+        }
+
         public void StartTrace()
         {
 
