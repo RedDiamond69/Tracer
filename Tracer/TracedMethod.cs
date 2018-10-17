@@ -8,5 +8,6 @@ namespace Tracer
 {
     public class TracedMethod
     {
+
     }
 }
