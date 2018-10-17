@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace Tracer
 {
-    public class Tracer
+    public class Tracer : ITracer
     {
+        TraceResult traceResult;
+
+        public void StartTrace()
+        {
+
+        }
+
+        public void StopTrace()
+        {
+
+        }
+
+        public TraceResult GetTraceResult()
+        {
+            return traceResult;
+        }
     }
 }
