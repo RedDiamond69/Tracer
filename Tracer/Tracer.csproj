@@ -48,9 +48,8 @@
     <Compile Include="Tracer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TraceResult.cs" />
+    <Compile Include="Writer\IWriter.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Writer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
