@@ -20,13 +20,13 @@ namespace Tracer
         public string MethodName
         {
             get;
-            private set;
+            internal set;
         }
 
         public string MethodClassName
         {
             get;
-            private set;
+            internal set;
         }
 
         public ulong LeadTime
