@@ -51,6 +51,7 @@
     <Compile Include="Tracer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TraceResult.cs" />
+    <Compile Include="Writer\ConsoleDataWriter.cs" />
     <Compile Include="Writer\IWriter.cs" />
   </ItemGroup>
   <ItemGroup />
