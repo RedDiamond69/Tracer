@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml;
+﻿using System.Xml;
 using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization.Json;
-using System.Runtime.Serialization;
 using System.IO;
 
 namespace Tracer.Serialization

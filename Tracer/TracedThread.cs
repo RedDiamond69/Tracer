@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Tracer
 {
+    [Serializable, DataContract(Name = "thread")]
     public class TracedThread
     {
         private Stack<TracedMethod> threadMethods;
         private List<TracedMethod> threadTraceMethods;
+
+        public TracedThread() { }
 
         internal TracedThread(int id)
         {
@@ -18,18 +21,21 @@ namespace Tracer
             ThreadID = id;
         }
 
-        public int ThreadID { get; private set; }
+        [DataMember(Name = "id", Order = 0)]
+        public int ThreadID { get; set; }
 
+        [DataMember(Name = "time", Order = 1)]
         public string LeadTimeToString
         {
             get => String.Format("{0} ms.", LeadTime);
-            private set { }
+            set { }
         }
 
+        [DataMember(Name = "methods", Order = 2)]
         public List<TracedMethod> NestedMethods
         {
             get => new List<TracedMethod>(threadTraceMethods);
-            private set { }
+            set { }
         }
 
         private ulong LeadTime

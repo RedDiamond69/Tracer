@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Tracer
 {
+    [Serializable, DataContract(Name = "result")]
     public class TraceResult
     {
         private ConcurrentDictionary<int, TracedThread> traceResults;
 
+        [DataMember(Name = "threads")]
         public List<TracedThread> TraceResults
         {
             get => new List<TracedThread>(new SortedDictionary<int, TracedThread>(traceResults).Values);
@@ -30,6 +32,6 @@ namespace Tracer
 
         internal TracedThread GetTraceResult(int id) => traceResults[id];
 
-        internal TraceResult() => traceResults = new ConcurrentDictionary<int, TracedThread>();
+        public TraceResult() => traceResults = new ConcurrentDictionary<int, TracedThread>();
     }
 }
