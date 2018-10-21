@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="ITracer.cs" />
     <Compile Include="Serialization\ISerializer.cs" />
+    <Compile Include="Serialization\JsonSerializer.cs" />
+    <Compile Include="Serialization\XmlSerializer.cs" />
     <Compile Include="TracedMethod.cs" />
     <Compile Include="TracedThread.cs" />
     <Compile Include="Tracer.cs" />
