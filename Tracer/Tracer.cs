@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Tracer
 {
@@ -20,12 +23,18 @@ namespace Tracer
 
         public void StartTrace()
         {
-
+            MethodBase method = new StackTrace().GetFrame(1).GetMethod();
+            TracedMethod tracedMethod = new TracedMethod();
+            tracedMethod.MethodClassName = method.ReflectedType.Name;
+            tracedMethod.MethodName = method.Name;
+            TracedThread tracedThread = traceResult.AddOrGetTraceResult(Thread.CurrentThread.ManagedThreadId);
+            tracedThread.StartTrace(tracedMethod);
         }
 
         public void StopTrace()
         {
-
+            int threadID = Thread.CurrentThread.ManagedThreadId;
+            traceResult.GetTraceResult(threadID).StopTrace();
         }
 
         public TraceResult GetTraceResult()
