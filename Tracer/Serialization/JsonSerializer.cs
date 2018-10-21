@@ -21,7 +21,7 @@ namespace Tracer.Serialization
             }
         }
 
-        internal JsonSerializer()
+        public JsonSerializer()
         {
             jsonSerializer = new DataContractJsonSerializer(typeof(TraceResult));
         }

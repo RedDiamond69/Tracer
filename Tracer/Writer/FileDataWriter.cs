@@ -20,7 +20,7 @@ namespace Tracer.Writer
             }
         }
 
-        internal FileDataWriter(string filename)
+        public FileDataWriter(string filename)
         {
             _filename = filename;
         }

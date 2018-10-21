@@ -21,7 +21,7 @@ namespace Tracer.Serialization
             }
         }
 
-        internal XmlDataSerializer()
+        public XmlDataSerializer()
         {
             writerSettings = new XmlWriterSettings()
             {
