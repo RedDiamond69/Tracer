@@ -28,7 +28,7 @@ namespace Tracer
             return tracedThread;
         }
 
-        internal TracedThread GetThreadResult(int id) => traceResults[id];
+        internal TracedThread GetTraceResult(int id) => traceResults[id];
 
         internal TraceResult() => traceResults = new ConcurrentDictionary<int, TracedThread>();
     }
