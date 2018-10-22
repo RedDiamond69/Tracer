@@ -9,7 +9,7 @@ namespace Tracer.Writer
 
         public void Write(TraceResult traceResult, ISerializer serializer)
         {
-            using(FileStream fileStream = new FileStream(_filename, FileMode.OpenOrCreate, FileAccess.Write))
+            using(FileStream fileStream = new FileStream(_filename, FileMode.Create, FileAccess.Write))
             {
                 serializer.Serialize(traceResult, fileStream);
             }
