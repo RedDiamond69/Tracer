@@ -32,10 +32,9 @@ namespace Tracer
             set;
         }
 
-        internal ulong LeadTime
+        public ulong LeadTime
         {
             get => (ulong)stopwatch.ElapsedMilliseconds;
-            private set { }
         }
 
         [XmlAttribute(AttributeName = "time"), DataMember(Name = "time", Order = 2)]

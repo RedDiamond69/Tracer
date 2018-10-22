@@ -37,7 +37,7 @@ namespace Tracer
             set { }
         }
 
-        private ulong LeadTime
+        public ulong LeadTime
         {
             get => GetLeadTime();
         }
