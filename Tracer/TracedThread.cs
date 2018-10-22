@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace Tracer
 {
-    [Serializable, DataContract(Name = "thread")]
+    [Serializable, XmlRoot(ElementName = "thread"), DataContract(Name = "thread")]
     public class TracedThread
     {
         private Stack<TracedMethod> threadMethods;
@@ -19,17 +20,17 @@ namespace Tracer
             ThreadID = id;
         }
 
-        [DataMember(Name = "id", Order = 0)]
+        [XmlAttribute(AttributeName = "id"), DataMember(Name = "id", Order = 0)]
         public int ThreadID { get; set; }
 
-        [DataMember(Name = "time", Order = 1)]
+        [XmlAttribute(AttributeName = "time"), DataMember(Name = "time", Order = 1)]
         public string LeadTimeToString
         {
             get => String.Format("{0} ms.", LeadTime);
             set { }
         }
 
-        [DataMember(Name = "methods", Order = 2)]
+        [XmlElement(ElementName = "method"), DataMember(Name = "methods", Order = 2)]
         public List<TracedMethod> NestedMethods
         {
             get => new List<TracedMethod>(threadTraceMethods);

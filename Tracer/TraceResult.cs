@@ -2,15 +2,16 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace Tracer
 {
-    [Serializable, DataContract(Name = "result")]
+    [Serializable, XmlRoot(ElementName = "root"), DataContract(Name = "result")]
     public class TraceResult
     {
         private ConcurrentDictionary<int, TracedThread> traceResults;
 
-        [DataMember(Name = "threads")]
+        [XmlArray(ElementName = "threads"), XmlArrayItem(ElementName = "thread"), DataMember(Name = "threads")]
         public List<TracedThread> TraceResults
         {
             get => new List<TracedThread>(new SortedDictionary<int, TracedThread>(traceResults).Values);

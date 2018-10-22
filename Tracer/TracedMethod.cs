@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace Tracer
 {
-    [Serializable, DataContract(Name = "method")]
+    [Serializable, XmlRoot(ElementName = "method"), DataContract(Name = "method")]
     public class TracedMethod
     {
         private List<TracedMethod> nestedMethods;
@@ -17,14 +18,14 @@ namespace Tracer
             stopwatch = new Stopwatch();
         }
 
-        [DataMember(Name = "name", Order = 0)]
+        [XmlAttribute(AttributeName = "name"), DataMember(Name = "name", Order = 0)]
         public string MethodName
         {
             get;
             set;
         }
 
-        [DataMember(Name = "class", Order = 1)]
+        [XmlAttribute(AttributeName = "class"), DataMember(Name = "class", Order = 1)]
         public string MethodClassName
         {
             get;
@@ -37,14 +38,14 @@ namespace Tracer
             private set { }
         }
 
-        [DataMember(Name = "time", Order = 2)]
+        [XmlAttribute(AttributeName = "time"), DataMember(Name = "time", Order = 2)]
         public string LeadTimeToString
         {
             get => String.Format("{0} ms.", LeadTime);
             set { }
         }
 
-        [DataMember(Name = "methods", Order = 3)]
+        [XmlElement(ElementName = "method"), DataMember(Name = "methods", Order = 3)]
         public List<TracedMethod> NestedMethods
         {
             get => new List<TracedMethod>(nestedMethods);
