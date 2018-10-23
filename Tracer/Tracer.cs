@@ -9,7 +9,7 @@ namespace Tracer
         private readonly TraceResult traceResult;
 
         private static volatile Tracer instance = null;
-        private static readonly object synsRoot = new object();
+        private static readonly object syncRoot = new object();
 
         private Tracer()
         {
@@ -41,7 +41,7 @@ namespace Tracer
         {
             if(instance == null)
             {
-                lock (synsRoot)
+                lock (syncRoot)
                 {
                     if(instance == null)
                     {

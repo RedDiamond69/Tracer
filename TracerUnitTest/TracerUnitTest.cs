@@ -10,7 +10,7 @@ namespace TracerUnitTest
     public class TracerUnitTest
     {
         private readonly ITracer _tracer = Tracer.Tracer.GetInstance();
-        private int waitTime = 100;
+        private readonly int waitTime = 100;
 
         private void SimpleMethod()
         {
@@ -22,9 +22,7 @@ namespace TracerUnitTest
         [TestMethod]
         public void TimeTest()
         {
-            _tracer.StartTrace();
-            Thread.Sleep(waitTime);
-            _tracer.StopTrace();
+            SimpleMethod();
             long actualTime = (long)_tracer.GetTraceResult().TraceResults[0].NestedMethods[0].LeadTime;
             Assert.IsTrue(actualTime >= waitTime);
         }
@@ -32,13 +30,11 @@ namespace TracerUnitTest
         [TestMethod]
         public void NameTest()
         {
-            _tracer.StartTrace();
-            Thread.Sleep(waitTime);
-            _tracer.StopTrace();
+            SimpleMethod();
             string actualClassName = _tracer.GetTraceResult().TraceResults[0].NestedMethods[0].MethodClassName;
-            string actualMethodName = _tracer.GetTraceResult().TraceResults[0].NestedMethods[1].MethodName;
-            Assert.AreEqual(actualMethodName, "NameTest");
-            Assert.AreEqual(actualClassName, "TracerUnitTest");
+            string actualMethodName = _tracer.GetTraceResult().TraceResults[0].NestedMethods[0].MethodName;
+            Assert.AreEqual(actualMethodName, nameof(SimpleMethod));
+            Assert.AreEqual(actualClassName, nameof(TracerUnitTest));
         }
 
         [TestMethod]
